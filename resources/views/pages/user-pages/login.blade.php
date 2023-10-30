@@ -1,4 +1,7 @@
 @extends('layout.master-mini')
+@section('title')
+Login
+@endsection
 @section('content')
 
 <div class="content-wrapper d-flex align-items-center justify-content-center auth theme-one" style="background-image: url({{ url('assets/images/auth/login_1.jpg') }}); background-size: cover;">

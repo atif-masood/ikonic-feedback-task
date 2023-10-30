@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\admin;
 
 use Illuminate\Http\Request;
 use App\Models\Feedback;
@@ -10,12 +10,12 @@ class FeedbackController extends Controller
     public function index()
     {
         $feedbacks = Feedback::all();
-        return view('feedbacks.index', compact('feedbacks'));
+        return view('admin.feedbacks.index', compact('feedbacks'));
     }
 
     public function create()
     {
-        return view('feedbacks.create');
+        return view('admin.feedbacks.create');
     }
 
     public function store(Request $request)
