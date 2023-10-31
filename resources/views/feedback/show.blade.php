@@ -6,7 +6,7 @@
     <div class="row">
         <div class="col-md-8">
             <div class="card">
-                <h2>
+                <h2> 
                     {{ $feedback->title }}
                 </h2>
                 <div class="card-body">
