@@ -14,6 +14,7 @@
                     {{-- <p><strong>Author:</strong> {{ $blog->author }}</p> --}}
                     <p><strong>Date:</strong> {{ $feedback->created_at }}</p>
                     <p>{!! $feedback->description !!}</p>
+                    <button class="btn btn-primary" id="voteButton">Vote</button>
                 </div>
             </div>
 
@@ -28,7 +29,7 @@
                             <p>{{ $comment->content }}</p>
                         </div>
                     @endforeach --}}
-
+                    @auth
                     <form action="" method="POST">
                         @csrf
                         <input type="hidden" name="blog_id" value="{{ $feedback->id }}">
@@ -37,6 +38,7 @@
                         </div>
                         <button type="submit" class="btn btn-primary">Add Comment</button>
                     </form>
+                    @endauth
                 </div>
             </div>
         </div>
@@ -46,4 +48,5 @@
     </div>
     </div
 </div>
+<script src="{{ asset('js/vote.js') }}"></script>
 @endsection

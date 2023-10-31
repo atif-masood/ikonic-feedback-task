@@ -19,6 +19,8 @@ Feedback
                   <th>Title</th>
                   <th>Description</th>
                   <th>Category</th>
+                  <th>Vote Count</th>
+                  <th>Status</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -29,6 +31,14 @@ Feedback
                     <td>{{$feedback->title}}</td>
                     <td>{!! $feedback->description !!}</td>
                     <td>{{$feedback->category}}</td>
+                    <td>{{ $voteCounts[$feedback->id]}}</td>
+                    <td>
+                        @if ($feedback->status == 1)
+                            Active
+                        @else
+                            Inactive
+                        @endif
+                    </td>
                     <td>
                         <a class="btn btn-primary btn-fw" href="{{ route('feedbacks.edit',  $feedback->id) }}">Edit</a>
                         <form action="{{ route('feedbacks.destroy', $feedback->id) }}" method="POST">

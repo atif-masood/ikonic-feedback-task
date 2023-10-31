@@ -10,9 +10,21 @@ class Feedback extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $table = 'feedbacks';
+
     protected $fillable = [
         'title',
         'description',
         'category',
     ];
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
+    public function votes()
+    {
+        return $this->hasMany(Vote::class, 'feedback_id', 'id');
+    }
 }

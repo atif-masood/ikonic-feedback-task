@@ -5,13 +5,23 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Feedback;
+use DB;
 
 class FeedbackController extends Controller
 {
     public function index()
     {
         $feedbacks = Feedback::paginate(10);
-        return view('admin.feedbacks.index', compact('feedbacks'));
+    $voteCounts = [];
+
+    foreach ($feedbacks as $feedback) {
+        $voteCount = DB::table('votes')
+            ->where('feedback_id', $feedback->id)
+            ->count();
+
+        $voteCounts[$feedback->id] = $voteCount;
+    }
+        return view('admin.feedbacks.index', compact('feedbacks' , 'voteCounts'));
     }
 
     public function create()

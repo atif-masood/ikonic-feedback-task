@@ -28,6 +28,7 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 Route::middleware(['auth'])->group(function () {
     Route::get('feedback/create', [FeedbackController::class , 'create'])->name('feedback.create');
     Route::get('feedback/show/{id}', [App\Http\Controllers\HomeController::class , 'show'])->name('feedback.show');
+    Route::post('/feedback/{id}/vote', [App\Http\Controllers\VoteController::class ,'vote']);
 });
 
 Route::middleware(['auth', 'admin'])->group(function () {
