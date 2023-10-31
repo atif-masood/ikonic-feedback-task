@@ -23,16 +23,16 @@
                     Comments
                 </div>
                 <div class="card-body">
-                    {{-- @foreach ($comments as $comment)
+                    @foreach ($comments as $comment)
                         <div class="mb-3">
                             <strong>{{ $comment->user->name }}</strong> said:
                             <p>{{ $comment->content }}</p>
                         </div>
-                    @endforeach --}}
+                    @endforeach
                     @auth
-                    <form action="" method="POST">
+                    <form action="{{ route('comment.store') }}" method="POST">
                         @csrf
-                        <input type="hidden" name="blog_id" value="{{ $feedback->id }}">
+                        <input type="hidden" name="feedback_id" value="{{ $feedback->id }}">
                         <div class="form-group">
                             <textarea name="content" class="form-control" rows="3" placeholder="Add a comment"></textarea>
                         </div>

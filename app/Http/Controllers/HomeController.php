@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Feedback;
 use App\Models\User;
+use App\Models\Comment;
 
 class HomeController extends Controller
 {
@@ -33,6 +34,8 @@ class HomeController extends Controller
     public function show( $id)
     {
         $feedback = Feedback::find($id);
-        return view('feedback.show', compact('feedback'));
+        $comments = Comment::where('feedback_id' , $id)->get();
+        // dd($comments , $feedback);
+        return view('feedback.show', compact('feedback' , 'comments'));
     }
 }

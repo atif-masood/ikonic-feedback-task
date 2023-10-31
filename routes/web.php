@@ -29,6 +29,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('feedback/create', [FeedbackController::class , 'create'])->name('feedback.create');
     Route::get('feedback/show/{id}', [App\Http\Controllers\HomeController::class , 'show'])->name('feedback.show');
     Route::post('/feedback/{id}/vote', [App\Http\Controllers\VoteController::class ,'vote']);
+    Route::post('/comment/store', [App\Http\Controllers\VoteController::class ,'store_comment'])->name('comment.store');
 });
 
 Route::middleware(['auth', 'admin'])->group(function () {
