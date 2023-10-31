@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Feedback;
+use App\Models\User;
+use App\Models\Comment;
 
 class HomeController extends Controller
 {
@@ -11,10 +15,10 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
 
     /**
      * Show the application dashboard.
@@ -23,6 +27,15 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $feedbacks = Feedback::get();
+        return view('home' , compact('feedbacks'));
+    }
+
+    public function show( $id)
+    {
+        $feedback = Feedback::find($id);
+        $comments = Comment::where('feedback_id' , $id)->get();
+        // dd($comments , $feedback);
+        return view('feedback.show', compact('feedback' , 'comments'));
     }
 }
