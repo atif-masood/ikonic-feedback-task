@@ -1,6 +1,6 @@
 @extends('layout.master')
 @section('title')
-Feedback
+Users
 @endsection
 @push('plugin-styles')
 @endpush
@@ -10,33 +10,26 @@ Feedback
     <div class="col-lg-12 grid-margin stretch-card">
       <div class="card">
         <div class="card-body">
-          <h4 class="card-title">FeedBack</h4>
-          {{-- <a href="{{ route('feedbacks.create') }}" class="btn btn-success btn-fw">Add Feedback</a> --}}
+          <h4 class="card-title">Users</h4>
           <div class="table-responsive">
             <table class="table">
               <thead>
                 <tr>
-                  <th>Title</th>
-                  <th>Description</th>
-                  <th>Category</th>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Created Time</th>
                   <th>Action</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                    @if(isset($feedbacks ))
-                    @foreach($feedbacks as $feedback)
-                    <td>{{$feedback->title}}</td>
-                    <td>{!! $feedback->description !!}</td>
-                    <td>{{$feedback->category}}</td>
+                    @if(isset($users))
+                    @foreach($users as $user)
+                    <td>{{$user->name}}</td>
+                    <td>{{$user->email}}</td>
+                    <td>{{$user->created_at->format('d F Y')}}</td>
                     <td>
-                        <a class="btn btn-primary btn-fw" href="{{ route('feedbacks.edit',  $feedback->id) }}">Edit</a>
-                        <form action="{{ route('feedbacks.destroy', $feedback->id) }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-fw">Delete</button>
-                        {{-- </form>
-                        <a class="btn btn-danger btn-fw" href="{{ route('feedbacks.destroy', $feedback->id) }}">Delete</a> --}}
+                        <a class="btn btn-primary btn-fw" href="{{ route('admin.delete-user', ['id' => $user->id]) }}">Delete</a>
                     </td>
                     
                 </tr>
@@ -45,9 +38,8 @@ Feedback
                     <td> No Record</td>
                 </tr>
                 @endif
-            </tbody>
-        </table>
-        {{ $feedbacks->links() }}
+              </tbody>
+            </table>
           </div>
         </div>
       </div>

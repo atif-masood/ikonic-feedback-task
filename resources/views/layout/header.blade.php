@@ -11,7 +11,7 @@
     <ul class="navbar-nav navbar-nav-right">
       
       <li class="nav-item dropdown d-none d-xl-inline-block">
-          <span class="profile-text d-none d-md-inline-flex">Richard V.Welsh !</span>
+          <span class="profile-text d-none d-md-inline-flex">{{ Auth::user()->name }}</span>
         
       </li>
     </ul>

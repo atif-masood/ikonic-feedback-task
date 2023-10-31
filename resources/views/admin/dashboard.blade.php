@@ -1,5 +1,7 @@
 @extends('layout.master')
-
+@section('title')
+Dashboard
+@endsection
 @push('plugin-styles')
 @endpush
 

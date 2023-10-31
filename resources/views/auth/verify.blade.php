@@ -1,4 +1,7 @@
-@extends('layouts.app')
+@extends('layout.master-mini')
+@section('title')
+Verify Email
+@endsection
 
 @section('content')
 <div class="container">

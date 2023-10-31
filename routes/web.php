@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin\FeedbackController;
 use App\Http\Controllers\admin\DashboardController;
+use App\Http\Controllers\admin\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,18 +16,25 @@ use App\Http\Controllers\admin\DashboardController;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+// Route::get('/', function () {
+//     return view('home');
+// });
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
 Route::middleware(['auth'])->group(function () {
+    Route::get('feedback/create', [FeedbackController::class , 'create'])->name('feedback.create');
+    Route::get('feedback/show/{id}', [App\Http\Controllers\HomeController::class , 'show'])->name('feedback.show');
+});
+
+Route::middleware(['auth', 'admin'])->group(function () {
     Route::resource('feedbacks', FeedbackController::class);
-    Route::get('admin/dashboard', 'DashboardController@index');
+    Route::get('admin/dashboard', [DashboardController::class , 'index']);
+    Route::get('admin/users', [UserController::class , 'index'])->name('admin.list-users');
+    Route::get('/admin/delete-user/{id}', [UserController::class , 'deleteUser'])->name('admin.delete-user');
 });
 
 Route::group(['prefix' => 'user-pages'], function(){

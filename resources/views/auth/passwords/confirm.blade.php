@@ -1,4 +1,7 @@
-@extends('layouts.app')
+@extends('layout.master-mini')
+@section('title')
+Reset Password
+@endsection
 
 @section('content')
 <div class="container">

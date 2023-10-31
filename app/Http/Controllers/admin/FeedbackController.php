@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\admin;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Feedback;
 
@@ -9,7 +10,7 @@ class FeedbackController extends Controller
 {
     public function index()
     {
-        $feedbacks = Feedback::all();
+        $feedbacks = Feedback::paginate(10);
         return view('admin.feedbacks.index', compact('feedbacks'));
     }
 
@@ -34,12 +35,14 @@ class FeedbackController extends Controller
 
     public function show(Feedback $feedback)
     {
-        return view('feedbacks.show', compact('feedback'));
+        // return view('admin.feedbacks.show', compact('feedback'));
     }
 
-    public function edit(Feedback $feedback)
+    public function edit($id)
     {
-        return view('feedbacks.edit', compact('feedback'));
+        // dd($id);
+        $feedback = Feedback::find($id);
+        return view('admin.feedbacks.edit', compact('feedback'));
     }
 
     public function update(Request $request, Feedback $feedback)
@@ -56,9 +59,12 @@ class FeedbackController extends Controller
             ->with('success', 'Feedback updated successfully');
     }
 
-    public function destroy(Feedback $feedback)
+    public function destroy($id)
     {
-        $feedback->delete();
+        $feedback = Feedback::find($id); 
+        if ($feedback) {
+            $feedback->delete(); 
+        }
 
         return redirect()->route('feedbacks.index')
             ->with('success', 'Feedback deleted successfully');
