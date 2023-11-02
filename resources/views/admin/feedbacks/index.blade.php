@@ -45,8 +45,8 @@ Feedback
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger btn-fw">Delete</button>
-                        {{-- </form>
-                        <a class="btn btn-danger btn-fw" href="{{ route('feedbacks.destroy', $feedback->id) }}">Delete</a> --}}
+                        </form>
+                        {{-- <a class="btn btn-danger btn-fw" href="{{ route('feedbacks.destroy', $feedback->id) }}">Delete</a> --}}
                     </td>
                     
                 </tr>

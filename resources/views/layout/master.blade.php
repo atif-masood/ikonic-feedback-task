@@ -29,7 +29,10 @@
   <div class="container-scroller" id="app">
     @include('layout.header')
     <div class="container-fluid page-body-wrapper">
+      @if(request()->routeIs('feedback.create') ||request()->routeIs('feedback.edit_feedback'))
+      @else
       @include('layout.sidebar')
+      @endif
       <div class="main-panel">
         <div class="content-wrapper">
           @yield('content')

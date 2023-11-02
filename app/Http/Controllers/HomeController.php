@@ -27,15 +27,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $feedbacks = Feedback::get();
+        $feedbacks = Feedback::with('user')->get();
         return view('home' , compact('feedbacks'));
     }
 
     public function show( $id)
     {
-        $feedback = Feedback::find($id);
+        $feedback = Feedback::with('user')->find($id);
         $comments = Comment::where('feedback_id' , $id)->get();
-        // dd($comments , $feedback);
         return view('feedback.show', compact('feedback' , 'comments'));
     }
 }

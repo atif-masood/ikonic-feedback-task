@@ -7,12 +7,14 @@ Feedback
 
 @section('content')
 <div class="row">
-    <div class="col-lg-12 grid-margin stretch-card">
+    <div class="col-lg-2">
+    </div>
+      <div class="col-lg-10 grid-margin stretch-card">
       <div class="card">
         <div class="card-body">
           <h4 class="card-title">Add FeedBack</h4>
           <div class="table-responsive">
-            <form method="POST" action="{{ route('feedbacks.store') }}">
+            <form method="POST" action="{{ route('feedback.store') }}">
                 @csrf
     
                 <div class="form-group">
