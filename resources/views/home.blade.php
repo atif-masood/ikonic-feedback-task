@@ -2,15 +2,8 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content">
-        <div class="col-md-2">
-            <div class="card">
-                @auth
-                <a href="{{ route('feedback.create') }}" target="_blank" class="btn btn-success btn-fw">Add Feedback</a>
-                @endauth
-            </div>
-        </div>
-    </div><br>
+    <br>
+    @if(isset($feedbacks) && $feedbacks->count() > 0)
         <div class="row">
             @foreach($feedbacks as $feedback)
                 <div class="col-md-4 mb-4">
@@ -29,6 +22,9 @@
                 </div>
             @endforeach
         </div>
+        @else
+            <p class="text-center strong">No Feedback Available</p>
+        @endif
     </div
 </div>
 @endsection

@@ -27,6 +27,10 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 
 Route::middleware(['auth'])->group(function () {
     Route::get('feedback/create', [FeedbackController::class , 'create'])->name('feedback.create');
+    Route::post('feedback/store', [FeedbackController::class , 'store'])->name('feedback.store');
+    Route::post('feedback/vote/{id}', [FeedbackController::class , 'feedback_vote'])->name('feedback.vote');
+    Route::get('feedback/edit_feedback/{id}', [FeedbackController::class , 'edit_feedback'])->name('feedback.edit_feedback');
+    Route::post('feedback/update/{id}', [FeedbackController::class , 'update'])->name('feedback.update_feedback');
     Route::get('feedback/show/{id}', [App\Http\Controllers\HomeController::class , 'show'])->name('feedback.show');
     Route::post('/feedback/{id}/vote', [App\Http\Controllers\VoteController::class ,'vote']);
     Route::post('/comment/store', [App\Http\Controllers\VoteController::class ,'store_comment'])->name('comment.store');

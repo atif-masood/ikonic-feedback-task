@@ -38,7 +38,16 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
-                        <!-- Authentication Links -->
+                        
+                        @guest
+                            <li class="nav-item">
+                                <a href="{{ route('feedback.create') }}" target="_blank" class="nav-link">Add Feedback</a>
+                            </li>
+                        @else
+                            <li class="nav-item">
+                                <a href="{{ route('feedback.create') }}" target="_blank" class="nav-link">Add Feedback</a>
+                            </li>
+                        @endguest
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
@@ -54,7 +63,7 @@
                         @else
                             
                             <div class="dropdown">
-                                <button class="btn btn-primary dropdown-toggle" type="button" id="dynamicDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <button class="btn btn-primary dropdown-toggle mt-1" type="button" id="dynamicDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dynamicDropdown">
